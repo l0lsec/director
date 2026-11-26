@@ -58,7 +58,7 @@ Claude features (script drafting, the Director edit pass) need your own Anthropi
 node scripts/release/package.mjs
 ```
 
-This builds `apps/desktop/release/mac-arm64/Director.app` with ffmpeg, whisper.cpp and the native helper bundled inside, so it runs on a Mac without Homebrew. It is signed ad hoc, which is enough for the Mac that built it. With a Developer ID Application certificate in your keychain, the same command signs it with the hardened runtime. If a `notarytool` keychain profile named `director-notary` exists, it also notarizes the app.
+This builds `apps/desktop/release/mac-arm64/Director.app` with ffmpeg, whisper.cpp and the native helper bundled inside, so it runs on a Mac without Homebrew. The bundled tools come from Homebrew, which builds them for the macOS version they were installed on, so the packaged app requires that macOS version or later; the script sets the app's minimum system version to match. It is signed ad hoc, which is enough for the Mac that built it. With a Developer ID Application certificate in your keychain, the same command signs it with the hardened runtime. If a `notarytool` keychain profile named `director-notary` exists, it also notarizes the app.
 
 A downloaded, unsigned copy is blocked by Gatekeeper the first time. Right-click it and choose Open, or run:
 

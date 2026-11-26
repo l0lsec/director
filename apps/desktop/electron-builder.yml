@@ -32,6 +32,7 @@ mac:
     - target: dir
       arch: arm64
   category: public.app-category.video
+  # minimumSystemVersion is set by scripts/release/package.mjs from the newest macOS any bundled binary needs.
   # Ad-hoc signature; set CSC_NAME (Developer ID) and notarize for distribution to other Macs.
   identity: "-"
   hardenedRuntime: false
@@ -40,4 +41,3 @@ mac:
     NSCameraUsageDescription: Director records you while you read the teleprompter.
     NSMicrophoneUsageDescription: Director records your voice and lets the teleprompter follow it.
     NSSpeechRecognitionUsageDescription: The teleprompter follows your speech on this Mac.
-    LSMinimumSystemVersion: "15.0"

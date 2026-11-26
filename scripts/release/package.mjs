@@ -8,6 +8,7 @@
 // Without a Developer ID it falls back to an ad-hoc signature (runs on this Mac only). --adhoc forces that.
 import { execFileSync, spawnSync } from 'node:child_process';
 import { join, dirname, resolve } from 'node:path';
+import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -26,11 +27,19 @@ const profile = process.env.DIRECTOR_NOTARY_PROFILE ?? 'director-notary';
 
 if (!process.argv.includes('--skip-sidecars')) step('node', ['scripts/release/bundle-sidecars.mjs']);
 step('node', ['scripts/release/stage-app.mjs']);
+
+// Homebrew bottles target the macOS they were built on, so the app can only promise the newest minimum among them.
+const sidecars = join(desktop, 'build', 'sidecars');
+const minos = (f) => /minos (\S+)/.exec(spawnSync('vtool', ['-show-build', f], { encoding: 'utf8' }).stdout ?? '')?.[1] ?? '0';
+const newer = (a, b) => { const x = a.split('.').map(Number), y = b.split('.').map(Number); for (let i = 0; i < 3; i++) if ((x[i] ?? 0) !== (y[i] ?? 0)) return (x[i] ?? 0) > (y[i] ?? 0); return false; };
+let minimum = '15.0';
+for (const sub of ['bin', 'lib']) for (const f of readdirSync(join(sidecars, sub))) { const v = minos(join(sidecars, sub, f)); if (newer(v, minimum)) minimum = v; }
+console.log(`minimum macOS: ${minimum} (the newest any bundled binary needs)`);
 const signArgs = identity
   ? ['-c.mac.identity=' + identity.replace(/^Developer ID Application: /, ''), '-c.mac.hardenedRuntime=true', '-c.mac.gatekeeperAssess=false',
      '-c.mac.entitlements=build/resources/entitlements.mac.plist', '-c.mac.entitlementsInherit=build/resources/entitlements.mac.plist']
   : [];
-step('npx', ['electron-builder', '--mac', 'dir', '--arm64', '--config', 'electron-builder.yml', '--publish', 'never', ...signArgs], desktop, { CSC_IDENTITY_AUTO_DISCOVERY: 'false' });
+step('npx', ['electron-builder', '--mac', 'dir', '--arm64', '--config', 'electron-builder.yml', '--publish', 'never', `-c.mac.minimumSystemVersion=${minimum}`, ...signArgs], desktop, { CSC_IDENTITY_AUTO_DISCOVERY: 'false' });
 console.log(`packaged ${app}`);
 if (!identity) { console.log('signed ad-hoc (runs on this Mac). Add a Developer ID Application certificate to sign for other Macs.'); process.exit(0); }
 step('codesign', ['--verify', '--deep', '--strict', '--verbose=2', app]);
@@ -42,4 +51,4 @@ step('ditto', ['-c', '-k', '--keepParent', app, zip]);
 step('xcrun', ['notarytool', 'submit', zip, '--keychain-profile', profile, '--wait']);
 step('xcrun', ['stapler', 'staple', app]);
 step('spctl', ['--assess', '--type', 'execute', '--verbose=2', app]);
-console.log('notarized and stapled: Director.app opens on any Mac with macOS 15 or later');
+console.log(`notarized and stapled: Director.app opens on any Apple Silicon Mac with macOS ${minimum} or later`);
