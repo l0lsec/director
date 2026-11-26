@@ -1,0 +1,377 @@
+{
+  "note": "Responses authored by hand in the exact Messages API response shape (content blocks, stop_reason, usage) for offline tests. They are not captured from live calls; scripts/ai/record.mjs records live ones when a key is set.",
+  "structure": {
+    "reel": {
+      "id": "msg_fixture_001",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "{\"hookType\":\"pattern interrupt\",\"overall\":\"A fast callout hook, four numbered-style tips each on its own shot, then a save prompt.\",\"segments\":[{\"label\":\"hook\",\"start\":0.4,\"end\":4.4,\"summary\":\"Calls out typing plain prompts into Claude\",\"technique\":\"pattern interrupt\"},{\"label\":\"value\",\"start\":4.6,\"end\":12.4,\"summary\":\"Let Claude ask questions; ask for three options\",\"technique\":\"list\"},{\"label\":\"value\",\"start\":12.3,\"end\":18.6,\"summary\":\"Write for a specific reader on a phone\",\"technique\":\"specific audience\"},{\"label\":\"value\",\"start\":18.4,\"end\":22.6,\"summary\":\"Have Claude critique its own answer\",\"technique\":\"role play\"},{\"label\":\"cta\",\"start\":22.7,\"end\":26.5,\"summary\":\"Save this before the next prompt\",\"technique\":\"save prompt\"}]}"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1840,
+        "output_tokens": 612,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 410
+      }
+    },
+    "messy": {
+      "id": "msg_fixture_002",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "{\"hookType\":\"question\",\"overall\":\"Out-of-order, overlapping and out-of-range segments, to test normalization.\",\"segments\":[{\"label\":\"cta\",\"start\":20,\"end\":50,\"summary\":\"Ends past the reel\",\"technique\":\"\"},{\"label\":\"hook\",\"start\":-2,\"end\":3,\"summary\":\"Starts before zero\",\"technique\":\"question\"},{\"label\":\"setup\",\"start\":5,\"end\":5,\"summary\":\"Empty\",\"technique\":\"\"},{\"label\":\"value\",\"start\":2.5,\"end\":21,\"summary\":\"Overlaps both neighbours\",\"technique\":\"list\"},{\"label\":\"proof\",\"start\":6,\"end\":9,\"summary\":\"Nested inside value\",\"technique\":\"demo\"}]}"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 900,
+        "output_tokens": 300,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    },
+    "refusal": {
+      "id": "msg_fixture_003",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [],
+      "stop_reason": "refusal",
+      "stop_details": {
+        "category": null,
+        "explanation": "This request was declined."
+      },
+      "usage": {
+        "input_tokens": 500,
+        "output_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    },
+    "truncated": {
+      "id": "msg_fixture_004",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "{\"hookType\":\"q\",\"overall\":\"x\",\"segments\":[{\"label\":\"hook\",\"start\":0,"
+        }
+      ],
+      "stop_reason": "max_tokens",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 900,
+        "output_tokens": 8000,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    },
+    "badShape": {
+      "id": "msg_fixture_005",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "{\"hookType\":\"q\",\"segments\":[{\"label\":\"intro\",\"start\":0,\"end\":5}]}"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 900,
+        "output_tokens": 50,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    },
+    "notJson": {
+      "id": "msg_fixture_006",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "Here is the structure: hook then value."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 900,
+        "output_tokens": 20,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    }
+  },
+  "draft": {
+    "fit": {
+      "id": "msg_fixture_007",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "{\"title\":\"The three second rule\",\"hook\":\"Stop posting videos nobody finishes.\",\"script\":\"[HOOK] Stop posting videos nobody finishes.\\nHere is the three second rule I use for every edit.\\n[ZOOM] Cut anything that does not earn the next second.\\nThat means the pause before you talk, the um, the restart.\\n[B-ROLL: timeline with gaps removed] Then put a new picture on screen every few seconds.\\nA punch in counts. So does a caption.\\n[PAUSE] Do this on your next video and watch your retention climb.\\n[CTA] Follow for one editing rule a day.\",\"notes\":\"Borrowed the callout hook and one-tip-per-shot pacing.\"}"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2210,
+        "output_tokens": 820,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 1260
+      }
+    },
+    "long": {
+      "id": "msg_fixture_008",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "{\"title\":\"The three second rule\",\"hook\":\"Stop posting videos nobody finishes.\",\"script\":\"[HOOK] Stop posting videos that nobody actually finishes watching all the way through to the end.\\nHere is the simple three second rule that I personally use for every single edit I make for my clients.\\n[ZOOM] First, cut absolutely anything that does not earn the next second of attention from your viewer.\\nThat means the long pause before you start talking, every single um and uh, and every restart where you stumbled.\\n[B-ROLL: timeline with gaps removed] Then make sure you put a brand new picture on the screen every few seconds or so.\\nA quick punch in counts as a new picture. So does a bold caption, a screen recording, or a cutaway.\\n[PAUSE] Try doing this on your very next video and then watch what happens to your retention numbers.\\n[CTA] Follow me for one practical editing rule every single day.\",\"notes\":\"Borrowed the callout hook and one-tip-per-shot pacing.\"}"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2210,
+        "output_tokens": 1150,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 1260
+      }
+    },
+    "revised": {
+      "id": "msg_fixture_009",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "{\"title\":\"The three second rule\",\"hook\":\"Stop posting videos nobody finishes.\",\"script\":\"[HOOK] Stop posting videos nobody finishes.\\nHere is the three second rule I use for every edit.\\n[ZOOM] Cut anything that does not earn the next second.\\nThat means the pause before you talk, the um, the restart.\\n[B-ROLL: timeline with gaps removed] Then put a new picture on screen every few seconds.\\nA punch in counts. So does a caption.\\n[PAUSE] Do this on your next video and watch your retention climb.\\n[CTA] Follow for one editing rule a day.\",\"notes\":\"Trimmed to length; same structure.\"}"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1420,
+        "output_tokens": 790,
+        "cache_read_input_tokens": 1260,
+        "cache_creation_input_tokens": 0
+      }
+    }
+  },
+  "hooks": {
+    "id": "msg_fixture_010",
+    "type": "message",
+    "role": "assistant",
+    "model": "claude-opus-5-5",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "fixture"
+      },
+      {
+        "type": "text",
+        "text": "{\"hooks\":[{\"text\":\"Your edits are losing people in the first second.\",\"score\":8.6,\"tags\":[\"Bold claim\",\"pain\"],\"why\":\"Names the pain directly.\"},{\"text\":\"I cut 40 percent of every video and views went up.\",\"score\":8.9,\"tags\":[\"number\",\"result\"],\"why\":\"Specific result.\"},{\"text\":\"Why do people stop watching your videos at second three?\",\"score\":7.8,\"tags\":[\"question\"],\"why\":\"Opens a loop.\"},{\"text\":\"Stop adding music to your edits.\",\"score\":7.1,\"tags\":[\"contrarian\"],\"why\":\"Pattern interrupt.\"},{\"text\":\"The edit trick nobody shows you.\",\"score\":6.2,\"tags\":[\"curiosity\"],\"why\":\"Curiosity gap.\"},{\"text\":\"Three cuts that fix boring talking head videos.\",\"score\":7.5,\"tags\":[\"list\",\"number\"],\"why\":\"Clear payoff.\"},{\"text\":\"Your edits are losing people in the first second.\",\"score\":8.6,\"tags\":[\"bold claim\"],\"why\":\"Duplicate on purpose.\"},{\"text\":\"I used to edit for hours. Now it takes ten minutes.\",\"score\":7.9,\"tags\":[\"story\",\"before and after\"],\"why\":\"Transformation.\"},{\"text\":\"If your video has a pause, you already lost them.\",\"score\":12,\"tags\":[\"bold claim\"],\"why\":\"Score out of range on purpose.\"},{\"text\":\"Watch me fix this edit in thirty seconds.\",\"score\":7.3,\"tags\":[\"demo\"],\"why\":\"Promise of a demo.\"},{\"text\":\"Nobody tells beginners this about pacing.\",\"score\":6.8,\"tags\":[\"curiosity\"],\"why\":\"Insider framing.\"}]}"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 980,
+      "output_tokens": 640,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 520
+    }
+  },
+  "voice": {
+    "id": "msg_fixture_011",
+    "type": "message",
+    "role": "assistant",
+    "model": "claude-opus-5-5",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "fixture"
+      },
+      {
+        "type": "text",
+        "text": "{\"score\":6.5,\"findings\":[{\"line\":1,\"severity\":\"warn\",\"issue\":\"Hook is soft: leads with a greeting\",\"suggestion\":\"Stop posting videos nobody finishes.\"},{\"line\":3,\"severity\":\"fix\",\"issue\":\"Uses the banned word \\\"leverage\\\"\",\"suggestion\":\"Use this rule to cut faster.\"},{\"line\":99,\"severity\":\"info\",\"issue\":\"Points at a line that does not exist\",\"suggestion\":\"\"},{\"line\":4,\"severity\":\"info\",\"issue\":\"Long sentence for a phone screen\",\"suggestion\":\"Cut the pause. Cut the um.\"}],\"rewrite\":\"Stop posting videos nobody finishes.\\nHere is my three second rule.\\nUse this rule to cut faster.\\nCut the pause. Cut the um.\\nSynergy aside, follow for more.\"}"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1300,
+      "output_tokens": 700,
+      "cache_read_input_tokens": 1100,
+      "cache_creation_input_tokens": 0
+    }
+  },
+  "release": {
+    "id": "msg_fixture_012",
+    "type": "message",
+    "role": "assistant",
+    "model": "claude-opus-5-5",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "fixture"
+      },
+      {
+        "type": "text",
+        "text": "{\"captions\":[\"The three second rule that keeps people watching.\",\"Cut what does not earn the next second.\",\"Save this for your next edit.\"],\"hashtags\":[\"#editing\",\"VideoTips\",\"reels\",\"editing\",\"content creator\"],\"covers\":[\"The 3 second rule\",\"Cut this\",\"Edit faster\"]}"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 600,
+      "output_tokens": 200,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0
+    }
+  },
+  "director": {
+    "valid": {
+      "id": "msg_fixture_013",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "{\"summary\":\"Tighten the dead air between tips, punch in on the three options line, cover the reader tip with b-roll, title the hook.\",\"actions\":[{\"type\":\"cut\",\"start\":3.6,\"end\":4.65,\"text\":\"\",\"amount\":0,\"reason\":\"Dead air after the hook\"},{\"type\":\"cut\",\"start\":12.35,\"end\":13.4,\"text\":\"\",\"amount\":0,\"reason\":\"Long pause before the third tip\"},{\"type\":\"cut\",\"start\":22.25,\"end\":23.3,\"text\":\"\",\"amount\":0,\"reason\":\"Pause before the CTA\"},{\"type\":\"zoom\",\"start\":8.42,\"end\":12.23,\"text\":\"\",\"amount\":1.2,\"reason\":\"Emphasis on the three options tip\"},{\"type\":\"broll\",\"start\":13.52,\"end\":18.07,\"text\":\"phone showing a short email\",\"amount\":0,\"reason\":\"Show the busy owner on their phone\"},{\"type\":\"text\",\"start\":0.5,\"end\":3.48,\"text\":\"Stop typing plain prompts\",\"amount\":0,\"reason\":\"Reinforce the hook on screen\"},{\"type\":\"marker\",\"start\":23.43,\"end\":23.43,\"text\":\"Consider a stronger CTA\",\"amount\":0,\"reason\":\"The save prompt is soft\"}]}"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 5200,
+        "output_tokens": 1450,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 640
+      }
+    },
+    "invalid": {
+      "id": "msg_fixture_014",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "{\"summary\":\"A plan with mistakes.\",\"actions\":[{\"type\":\"cut\",\"start\":25,\"end\":31,\"text\":\"\",\"amount\":0,\"reason\":\"Past the end\"},{\"type\":\"zoom\",\"start\":8.5,\"end\":10,\"text\":\"\",\"amount\":3,\"reason\":\"Too much zoom\"},{\"type\":\"cut\",\"start\":1.2,\"end\":2.3,\"text\":\"\",\"amount\":0,\"reason\":\"Cuts through a word\"},{\"type\":\"text\",\"start\":5,\"end\":7,\"text\":\"  \",\"amount\":0,\"reason\":\"Empty title\"},{\"type\":\"marker\",\"start\":2,\"end\":2,\"text\":\"Valid on its own\",\"amount\":0,\"reason\":\"Fine\"}]}"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 5100,
+        "output_tokens": 600,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    },
+    "badType": {
+      "id": "msg_fixture_015",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-opus-5-5",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "fixture"
+        },
+        {
+          "type": "text",
+          "text": "{\"summary\":\"x\",\"actions\":[{\"type\":\"delete_everything\",\"start\":0,\"end\":26,\"text\":\"\",\"amount\":0,\"reason\":\"no\"}]}"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 5000,
+        "output_tokens": 80,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.exp { display: grid; grid-template-columns: minmax(380px, 520px) 1fr; gap: 10px; padding: 10px; height: 100%; }
+.exp h3 { margin: 0 0 6px; font-size: 15px; }
+.exp-form, .exp-jobs { padding: 16px; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.presets { display: grid; gap: 6px; }
+.preset { text-align: left; display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; }
+.preset span { color: var(--text-faint); font-size: 12px; }
+.preset.on { border-color: var(--accent); background: rgba(245,184,61,0.08); }
+.field-col { display: flex; flex-direction: column; gap: 4px; }
+button.big { padding: 12px; font-size: 15px; }
+.job { border: 1px solid var(--line); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+.bar { height: 6px; background: var(--bg-3); border-radius: 3px; overflow: hidden; }
+.bar > i { display: block; height: 100%; background: var(--accent); transition: width .2s; }
+.err { color: var(--danger-text); font-size: 12px; }
+.hist { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 12px; }

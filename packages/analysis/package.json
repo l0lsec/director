@@ -1,0 +1,10 @@
+{
+  "name": "@director/analysis",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": { ".": "./src/index.ts", "./*": "./src/*.ts" },
+  "dependencies": { "@director/engine": "workspace:*" }
+}

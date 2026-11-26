@@ -1,0 +1,12 @@
+.ob { z-index: 60; }
+.ob-card { width: 560px; gap: 12px; padding: 24px; }
+.ob-card h2 { margin: 0; }
+.ob-steps { display: flex; gap: 6px; list-style: none; padding: 0; margin: 0; }
+.ob-steps li { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; background: var(--bg-3); color: var(--text-dim); }
+.ob-steps li[aria-current='step'] { background: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.ob-choices { display: flex; flex-direction: column; gap: 8px; }
+.ob-choice { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 14px; text-align: left; }
+.ob-choice span { color: var(--text-dim); font-size: 12px; font-weight: 400; }
+.ob-choice.primary span { color: var(--accent-ink); }
+.ob-perm { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 12px; background: var(--bg-2); border-radius: 8px; }
+.chip.ok { background: #143525; color: var(--ok); }

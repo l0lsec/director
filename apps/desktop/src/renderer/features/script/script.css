@@ -1,0 +1,22 @@
+.sc { display: grid; grid-template-columns: 260px 1fr 360px; gap: 8px; padding: 8px; height: 100%; min-height: 0; }
+.sc-left, .sc-right { display: flex; flex-direction: column; min-height: 0; }
+.sc .tabs { display: flex; gap: 2px; padding: 6px; border-bottom: 1px solid var(--line); }
+.sc .tabs button { background: transparent; border: 0; padding: 5px 10px; color: var(--text-dim); }
+.sc .tabs button[aria-selected='true'] { background: var(--bg-3); color: var(--text); }
+.sc-item { display: flex; flex-direction: column; gap: 2px; text-align: left; padding: 8px; background: var(--bg-2); border: 1px solid transparent; border-radius: 6px; }
+.sc-item.on { border-color: var(--accent); }
+.sc-center { display: flex; flex-direction: column; min-height: 0; padding: 10px; gap: 8px; }
+.sc-head { gap: 8px; }
+.sc-title { flex: 1; font-size: 16px; font-weight: 600; background: transparent; border-color: transparent; }
+.sc-title:hover, .sc-title:focus { border-color: var(--line); }
+.sc-text { flex: 1; min-height: 200px; font-size: 18px; line-height: 1.6; padding: 14px; font-family: var(--font); }
+.sc-foot { flex-wrap: wrap; gap: 8px; }
+.sc-foot .spacer { flex: 1; }
+.chip.warn { background: #4a3510; color: var(--accent); }
+.sc-stream { white-space: pre-wrap; background: var(--bg-2); padding: 8px; border-radius: 6px; font-family: var(--font); font-size: 13px; margin: 0; user-select: text; }
+.finding { display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; background: var(--bg-2); border-radius: 6px; border-left: 3px solid var(--line); }
+.finding.fix { border-left-color: var(--danger); }
+.finding.warn { border-left-color: var(--accent); }
+.finding.info { border-left-color: var(--info); }
+.voice-editor .field, .sc .field { display: flex; flex-direction: column; gap: 3px; }
+button.mini { padding: 2px 8px; font-size: 12px; }

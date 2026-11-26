@@ -1,0 +1,43 @@
+# Packaging for macOS (Apple Silicon). Run: node scripts/release/package.mjs
+appId: app.director.desktop
+productName: Director
+copyright: Copyright (c) 2026 Sedric Louissaint. MIT License.
+electronVersion: 45.3.0
+# Use the Electron already installed in node_modules (no download).
+electronDist: ../../node_modules/.pnpm/electron@45.3.0/node_modules/electron/dist
+directories:
+  # Staged by scripts/release/stage-app.mjs: built output plus a package.json without dependencies
+  # (everything is bundled by electron-vite), so no node_modules ship.
+  app: build/app
+  output: release
+  buildResources: build/resources
+asar: true
+# Only the bundled build; electron-builder would otherwise pull node_modules from the parent package.
+files:
+  - out/**/*
+  - package.json
+  - '!**/node_modules/**'
+afterPack: build/resources/after-pack.cjs
+npmRebuild: false
+nodeGypRebuild: false
+extraResources:
+  - from: build/sidecars/bin
+    to: bin
+  - from: build/sidecars/lib
+    to: lib
+  - from: resources/mcp-stdio.cjs
+    to: mcp-stdio.cjs
+mac:
+  target:
+    - target: dir
+      arch: arm64
+  category: public.app-category.video
+  # Ad-hoc signature; set CSC_NAME (Developer ID) and notarize for distribution to other Macs.
+  identity: "-"
+  hardenedRuntime: false
+  gatekeeperAssess: false
+  extendInfo:
+    NSCameraUsageDescription: Director records you while you read the teleprompter.
+    NSMicrophoneUsageDescription: Director records your voice and lets the teleprompter follow it.
+    NSSpeechRecognitionUsageDescription: The teleprompter follows your speech on this Mac.
+    LSMinimumSystemVersion: "15.0"

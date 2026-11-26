@@ -1,0 +1,975 @@
+{
+  "checksums": {
+    "sync-1080p30.mp4": "c8bcc01d112387decd777af82c93685fd56f93272f64a76ed3c64700d184551e",
+    "vertical-1080x1920.mp4": "e1abfe1a03a01839f993e5cdc71e44288a9d29763ec9dbe00a118ca7b657c22a",
+    "hevc-4k.mp4": "0a61e483e2a50eaf2b1670eaca62f57eb92ff6f9cc16ccdbf29a4331dd2e6101",
+    "still.png": "c130af8c247d0e2e2f917f7c0f0f2ab995c4c49f829938608fd28daa83f828b1",
+    "tone-440.wav": "abb09f8f68f338aea0705a81f3261a5e0dfdd259e8de8eb4057f4f4f5ad4b390",
+    "speech.wav": "a7c6ab5475dace311aa46732bde3bb07760d433345219d0b1fe7f1a4431934f2",
+    "speech-gaps.wav": "baf3b516b5eab6fce54bac5c01348dffb2c9cbabaeb2812be157485ec3a2f943",
+    "retakes.wav": "0508aed89886793bd70eac8fa00c1672418a28104bf93ca31e5c4d25c7db2b48",
+    "noisy-speech.wav": "6018f3b78ebc7b098d5bccd52d60a8b0d18957d29a355bf57ddc67e2a6fc12a0",
+    "follow-hold.wav": "2bdd2fd472ac459a03b896068db88bd0806121abecf8cceafec4701b6bc1d991",
+    "click-120bpm.wav": "b211c338439888913a91dc659210e7014fad353fcbeaacb6f5eb4d58adeed457",
+    "cuts-720p.mp4": "cda8db4d57e0b0fdaa87be6c8a4c9fd695ea6191d4e6f1712d502e678088224a",
+    "reference-reel.mp4": "74fc176a514344c1b0bf3caba87f4c84dd9b94ad237c0b8992053a728af82aea",
+    "clean-speech.wav": "4ac9dfdfb85ad681d78e61aab1a76da5f7b9f1d56480a750aefd50819567d9a3"
+  },
+  "files": {
+    "sync-1080p30.mp4": {
+      "width": 1920,
+      "height": 1080,
+      "fps": [
+        30,
+        1
+      ],
+      "frames": 300,
+      "durationSec": 10,
+      "flashEveryFrames": 30,
+      "beepEverySec": 1,
+      "beepHz": 1000,
+      "barcodeBits": 12,
+      "barcodeCell": 40
+    },
+    "vertical-1080x1920.mp4": {
+      "width": 1080,
+      "height": 1920,
+      "fps": [
+        30,
+        1
+      ],
+      "frames": 150,
+      "durationSec": 5
+    },
+    "hevc-4k.mp4": {
+      "width": 3840,
+      "height": 2160,
+      "fps": [
+        30,
+        1
+      ],
+      "frames": 90,
+      "durationSec": 3,
+      "codec": "hevc"
+    },
+    "still.png": {
+      "width": 1080,
+      "height": 1080,
+      "kind": "image"
+    },
+    "tone-440.wav": {
+      "sampleRate": 48000,
+      "channels": 1,
+      "durationSec": 4,
+      "hz": 440,
+      "amplitude": 0.5
+    },
+    "click-120bpm.wav": {
+      "bpm": 120,
+      "durationSec": 10,
+      "firstBeatSec": 0.5
+    },
+    "cuts-720p.mp4": {
+      "width": 1280,
+      "height": 720,
+      "fps": [
+        30,
+        1
+      ],
+      "cutsAtFrames": [
+        45,
+        96,
+        120,
+        171,
+        240,
+        264
+      ],
+      "frames": 300
+    },
+    "reference-reel.mp4": {
+      "width": 720,
+      "height": 1280,
+      "fps": [
+        30,
+        1
+      ],
+      "cutsAtFrames": [
+        60,
+        135,
+        245,
+        300,
+        395,
+        555,
+        690
+      ],
+      "frames": 804,
+      "audio": "speech.wav"
+    }
+  },
+  "speech": {
+    "file": "speech.wav",
+    "durationSec": 26.8302,
+    "words": [
+      {
+        "text": "Stop",
+        "start": 0.5,
+        "end": 0.9
+      },
+      {
+        "text": "typing",
+        "start": 0.99,
+        "end": 1.464
+      },
+      {
+        "text": "plain",
+        "start": 1.554,
+        "end": 1.9176
+      },
+      {
+        "text": "prompts",
+        "start": 2.0076,
+        "end": 2.5317
+      },
+      {
+        "text": "into",
+        "start": 2.6217,
+        "end": 3.0218
+      },
+      {
+        "text": "Claude",
+        "start": 3.1118,
+        "end": 3.4833
+      },
+      {
+        "text": "Ask",
+        "start": 4.7733,
+        "end": 5.1528
+      },
+      {
+        "text": "me",
+        "start": 5.2428,
+        "end": 5.5287
+      },
+      {
+        "text": "questions",
+        "start": 5.6187,
+        "end": 6.2219
+      },
+      {
+        "text": "before",
+        "start": 6.3119,
+        "end": 6.742
+      },
+      {
+        "text": "you",
+        "start": 6.832,
+        "end": 7.1001
+      },
+      {
+        "text": "answer",
+        "start": 7.1901,
+        "end": 7.6341
+      },
+      {
+        "text": "Give",
+        "start": 8.4241,
+        "end": 8.701
+      },
+      {
+        "text": "me",
+        "start": 8.791,
+        "end": 9.0769
+      },
+      {
+        "text": "three",
+        "start": 9.1669,
+        "end": 9.5188
+      },
+      {
+        "text": "options",
+        "start": 9.6088,
+        "end": 10.1349
+      },
+      {
+        "text": "and",
+        "start": 10.2249,
+        "end": 10.5414
+      },
+      {
+        "text": "pick",
+        "start": 10.6314,
+        "end": 10.9081
+      },
+      {
+        "text": "the",
+        "start": 10.9981,
+        "end": 11.3257
+      },
+      {
+        "text": "best",
+        "start": 11.4157,
+        "end": 11.7842
+      },
+      {
+        "text": "one",
+        "start": 11.8742,
+        "end": 12.2307
+      },
+      {
+        "text": "Write",
+        "start": 13.5207,
+        "end": 13.8487
+      },
+      {
+        "text": "this",
+        "start": 13.9387,
+        "end": 14.2456
+      },
+      {
+        "text": "for",
+        "start": 14.3356,
+        "end": 14.6713
+      },
+      {
+        "text": "a",
+        "start": 14.7613,
+        "end": 15.0468
+      },
+      {
+        "text": "busy",
+        "start": 15.1368,
+        "end": 15.4831
+      },
+      {
+        "text": "owner",
+        "start": 15.5731,
+        "end": 15.8983
+      },
+      {
+        "text": "who",
+        "start": 15.9883,
+        "end": 16.2981
+      },
+      {
+        "text": "reads",
+        "start": 16.3881,
+        "end": 16.8087
+      },
+      {
+        "text": "on",
+        "start": 16.8987,
+        "end": 17.2167
+      },
+      {
+        "text": "their",
+        "start": 17.3067,
+        "end": 17.5836
+      },
+      {
+        "text": "phone",
+        "start": 17.6736,
+        "end": 18.0686
+      },
+      {
+        "text": "Critique",
+        "start": 18.8586,
+        "end": 19.4297
+      },
+      {
+        "text": "your",
+        "start": 19.5197,
+        "end": 19.8625
+      },
+      {
+        "text": "answer",
+        "start": 19.9525,
+        "end": 20.3965
+      },
+      {
+        "text": "like",
+        "start": 20.4865,
+        "end": 20.831
+      },
+      {
+        "text": "a",
+        "start": 20.921,
+        "end": 21.2065
+      },
+      {
+        "text": "tough",
+        "start": 21.2965,
+        "end": 21.6703
+      },
+      {
+        "text": "editor",
+        "start": 21.7603,
+        "end": 22.1409
+      },
+      {
+        "text": "Save",
+        "start": 23.4309,
+        "end": 23.7868
+      },
+      {
+        "text": "this",
+        "start": 23.8768,
+        "end": 24.1837
+      },
+      {
+        "text": "before",
+        "start": 24.2737,
+        "end": 24.7039
+      },
+      {
+        "text": "your",
+        "start": 24.7939,
+        "end": 25.1367
+      },
+      {
+        "text": "next",
+        "start": 25.2267,
+        "end": 25.7292
+      },
+      {
+        "text": "prompt",
+        "start": 25.8192,
+        "end": 26.2402
+      }
+    ],
+    "lines": [
+      "Stop typing plain prompts into Claude",
+      "Ask me questions before you answer",
+      "Give me three options and pick the best one",
+      "Write this for a busy owner who reads on their phone",
+      "Critique your answer like a tough editor",
+      "Save this before your next prompt"
+    ]
+  },
+  "speechGaps": {
+    "file": "speech-gaps.wav",
+    "durationSec": 14.511,
+    "words": [
+      {
+        "text": "So",
+        "start": 0.8,
+        "end": 1.2123
+      },
+      {
+        "text": "here",
+        "start": 1.3022,
+        "end": 1.5773
+      },
+      {
+        "text": "is",
+        "start": 1.6673,
+        "end": 1.9695
+      },
+      {
+        "text": "the",
+        "start": 2.0595,
+        "end": 2.3871
+      },
+      {
+        "text": "thing",
+        "start": 2.4771,
+        "end": 2.7866
+      },
+      {
+        "text": "um",
+        "start": 3.8766,
+        "end": 4.1576
+      },
+      {
+        "text": "most",
+        "start": 4.2476,
+        "end": 4.6785
+      },
+      {
+        "text": "people",
+        "start": 4.7685,
+        "end": 5.166
+      },
+      {
+        "text": "never",
+        "start": 5.256,
+        "end": 5.5943
+      },
+      {
+        "text": "ask",
+        "start": 5.6843,
+        "end": 6.0638
+      },
+      {
+        "text": "the",
+        "start": 6.4038,
+        "end": 6.7314
+      },
+      {
+        "text": "right",
+        "start": 6.8214,
+        "end": 7.1493
+      },
+      {
+        "text": "question",
+        "start": 7.2393,
+        "end": 7.7599
+      },
+      {
+        "text": "uh",
+        "start": 9.4499,
+        "end": 9.7501
+      },
+      {
+        "text": "and",
+        "start": 9.8401,
+        "end": 10.1565
+      },
+      {
+        "text": "that",
+        "start": 10.2465,
+        "end": 10.5635
+      },
+      {
+        "text": "costs",
+        "start": 10.6535,
+        "end": 11.2241
+      },
+      {
+        "text": "them",
+        "start": 11.3141,
+        "end": 11.6315
+      },
+      {
+        "text": "every",
+        "start": 12.3215,
+        "end": 12.6881
+      },
+      {
+        "text": "single",
+        "start": 12.7781,
+        "end": 13.2258
+      },
+      {
+        "text": "day",
+        "start": 13.3158,
+        "end": 13.621
+      }
+    ],
+    "fillers": [
+      "um",
+      "uh"
+    ]
+  },
+  "retakes": {
+    "file": "retakes.wav",
+    "durationSec": 36.7376,
+    "takes": [
+      {
+        "kind": "keep",
+        "text": "Stop typing plain prompts into Claude",
+        "start": 0.6,
+        "end": 3.5833
+      },
+      {
+        "kind": "bad",
+        "text": "Ask me questions before you",
+        "start": 4.2733,
+        "end": 6.6001
+      },
+      {
+        "kind": "keep",
+        "text": "Ask me questions before you answer",
+        "start": 7.2901,
+        "end": 10.1508
+      },
+      {
+        "kind": "keep",
+        "text": "Give me three options and pick the best one",
+        "start": 10.8408,
+        "end": 14.6475
+      },
+      {
+        "kind": "adlib",
+        "text": "Honestly this one changed everything for me",
+        "start": 15.3375,
+        "end": 18.7659
+      },
+      {
+        "kind": "keep",
+        "text": "Write this for a busy owner who reads on their phone",
+        "start": 19.4559,
+        "end": 24.0038
+      },
+      {
+        "kind": "bad",
+        "text": "Critique your answer like a tough editor",
+        "start": 24.6938,
+        "end": 27.976
+      },
+      {
+        "kind": "keep",
+        "text": "Critique your answer like a tough editor",
+        "start": 28.666,
+        "end": 31.9483
+      },
+      {
+        "kind": "keep",
+        "text": "Save this before your next prompt",
+        "start": 32.6383,
+        "end": 35.4476
+      }
+    ],
+    "words": [
+      {
+        "text": "Stop",
+        "start": 0.6,
+        "end": 1
+      },
+      {
+        "text": "typing",
+        "start": 1.09,
+        "end": 1.564
+      },
+      {
+        "text": "plain",
+        "start": 1.654,
+        "end": 2.0176
+      },
+      {
+        "text": "prompts",
+        "start": 2.1076,
+        "end": 2.6317
+      },
+      {
+        "text": "into",
+        "start": 2.7217,
+        "end": 3.1218
+      },
+      {
+        "text": "Claude",
+        "start": 3.2118,
+        "end": 3.5833
+      },
+      {
+        "text": "Ask",
+        "start": 4.2733,
+        "end": 4.6528
+      },
+      {
+        "text": "me",
+        "start": 4.7428,
+        "end": 5.0287
+      },
+      {
+        "text": "questions",
+        "start": 5.1187,
+        "end": 5.7219
+      },
+      {
+        "text": "before",
+        "start": 5.8119,
+        "end": 6.242
+      },
+      {
+        "text": "you",
+        "start": 6.332,
+        "end": 6.6001
+      },
+      {
+        "text": "Ask",
+        "start": 7.2901,
+        "end": 7.6696
+      },
+      {
+        "text": "me",
+        "start": 7.7596,
+        "end": 8.0454
+      },
+      {
+        "text": "questions",
+        "start": 8.1354,
+        "end": 8.7386
+      },
+      {
+        "text": "before",
+        "start": 8.8286,
+        "end": 9.2588
+      },
+      {
+        "text": "you",
+        "start": 9.3488,
+        "end": 9.6168
+      },
+      {
+        "text": "answer",
+        "start": 9.7068,
+        "end": 10.1508
+      },
+      {
+        "text": "Give",
+        "start": 10.8408,
+        "end": 11.1178
+      },
+      {
+        "text": "me",
+        "start": 11.2078,
+        "end": 11.4936
+      },
+      {
+        "text": "three",
+        "start": 11.5836,
+        "end": 11.9356
+      },
+      {
+        "text": "options",
+        "start": 12.0256,
+        "end": 12.5517
+      },
+      {
+        "text": "and",
+        "start": 12.6417,
+        "end": 12.9581
+      },
+      {
+        "text": "pick",
+        "start": 13.0481,
+        "end": 13.3249
+      },
+      {
+        "text": "the",
+        "start": 13.4149,
+        "end": 13.7425
+      },
+      {
+        "text": "best",
+        "start": 13.8325,
+        "end": 14.201
+      },
+      {
+        "text": "one",
+        "start": 14.291,
+        "end": 14.6475
+      },
+      {
+        "text": "Honestly",
+        "start": 15.3375,
+        "end": 15.8769
+      },
+      {
+        "text": "this",
+        "start": 15.9669,
+        "end": 16.2739
+      },
+      {
+        "text": "one",
+        "start": 16.3639,
+        "end": 16.7204
+      },
+      {
+        "text": "changed",
+        "start": 16.8104,
+        "end": 17.3256
+      },
+      {
+        "text": "everything",
+        "start": 17.4156,
+        "end": 17.9644
+      },
+      {
+        "text": "for",
+        "start": 18.0544,
+        "end": 18.39
+      },
+      {
+        "text": "me",
+        "start": 18.48,
+        "end": 18.7659
+      },
+      {
+        "text": "Write",
+        "start": 19.4559,
+        "end": 19.7838
+      },
+      {
+        "text": "this",
+        "start": 19.8738,
+        "end": 20.1808
+      },
+      {
+        "text": "for",
+        "start": 20.2708,
+        "end": 20.6064
+      },
+      {
+        "text": "a",
+        "start": 20.6964,
+        "end": 20.982
+      },
+      {
+        "text": "busy",
+        "start": 21.072,
+        "end": 21.4183
+      },
+      {
+        "text": "owner",
+        "start": 21.5083,
+        "end": 21.8335
+      },
+      {
+        "text": "who",
+        "start": 21.9235,
+        "end": 22.2333
+      },
+      {
+        "text": "reads",
+        "start": 22.3233,
+        "end": 22.7439
+      },
+      {
+        "text": "on",
+        "start": 22.8339,
+        "end": 23.1519
+      },
+      {
+        "text": "their",
+        "start": 23.2419,
+        "end": 23.5188
+      },
+      {
+        "text": "phone",
+        "start": 23.6088,
+        "end": 24.0038
+      },
+      {
+        "text": "Critique",
+        "start": 24.6938,
+        "end": 25.2649
+      },
+      {
+        "text": "your",
+        "start": 25.3549,
+        "end": 25.6977
+      },
+      {
+        "text": "answer",
+        "start": 25.7877,
+        "end": 26.2317
+      },
+      {
+        "text": "like",
+        "start": 26.3217,
+        "end": 26.6662
+      },
+      {
+        "text": "a",
+        "start": 26.7562,
+        "end": 27.0417
+      },
+      {
+        "text": "tough",
+        "start": 27.1317,
+        "end": 27.5055
+      },
+      {
+        "text": "editor",
+        "start": 27.5955,
+        "end": 27.976
+      },
+      {
+        "text": "Critique",
+        "start": 28.666,
+        "end": 29.2371
+      },
+      {
+        "text": "your",
+        "start": 29.3271,
+        "end": 29.6699
+      },
+      {
+        "text": "answer",
+        "start": 29.7599,
+        "end": 30.2039
+      },
+      {
+        "text": "like",
+        "start": 30.2939,
+        "end": 30.6384
+      },
+      {
+        "text": "a",
+        "start": 30.7284,
+        "end": 31.014
+      },
+      {
+        "text": "tough",
+        "start": 31.104,
+        "end": 31.4777
+      },
+      {
+        "text": "editor",
+        "start": 31.5677,
+        "end": 31.9483
+      },
+      {
+        "text": "Save",
+        "start": 32.6383,
+        "end": 32.9942
+      },
+      {
+        "text": "this",
+        "start": 33.0842,
+        "end": 33.3912
+      },
+      {
+        "text": "before",
+        "start": 33.4812,
+        "end": 33.9113
+      },
+      {
+        "text": "your",
+        "start": 34.0013,
+        "end": 34.3441
+      },
+      {
+        "text": "next",
+        "start": 34.4341,
+        "end": 34.9366
+      },
+      {
+        "text": "prompt",
+        "start": 35.0266,
+        "end": 35.4476
+      }
+    ],
+    "lines": [
+      "Stop typing plain prompts into Claude",
+      "Ask me questions before you answer",
+      "Give me three options and pick the best one",
+      "Write this for a busy owner who reads on their phone",
+      "Critique your answer like a tough editor",
+      "Save this before your next prompt"
+    ]
+  },
+  "noisy": {
+    "file": "noisy-speech.wav",
+    "clean": "clean-speech.wav",
+    "noiseAmplitude": 0.05,
+    "seed": 42
+  },
+  "generatedWith": {
+    "ffmpeg": "ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers"
+  },
+  "followHold": {
+    "file": "follow-hold.wav",
+    "durationSec": 16.7425,
+    "words": [
+      {
+        "text": "Stop",
+        "start": 0.6,
+        "end": 1
+      },
+      {
+        "text": "typing",
+        "start": 1.09,
+        "end": 1.564
+      },
+      {
+        "text": "plain",
+        "start": 1.654,
+        "end": 2.0176
+      },
+      {
+        "text": "prompts",
+        "start": 2.1076,
+        "end": 2.6317
+      },
+      {
+        "text": "into",
+        "start": 2.7217,
+        "end": 3.1218
+      },
+      {
+        "text": "Claude",
+        "start": 3.2118,
+        "end": 3.5833
+      },
+      {
+        "text": "Honestly",
+        "start": 8.6733,
+        "end": 9.2128
+      },
+      {
+        "text": "this",
+        "start": 9.3028,
+        "end": 9.6097
+      },
+      {
+        "text": "one",
+        "start": 9.6997,
+        "end": 10.0562
+      },
+      {
+        "text": "changed",
+        "start": 10.1462,
+        "end": 10.6615
+      },
+      {
+        "text": "everything",
+        "start": 10.7515,
+        "end": 11.3003
+      },
+      {
+        "text": "for",
+        "start": 11.3902,
+        "end": 11.7259
+      },
+      {
+        "text": "me",
+        "start": 11.8159,
+        "end": 12.1017
+      },
+      {
+        "text": "Ask",
+        "start": 12.9917,
+        "end": 13.3712
+      },
+      {
+        "text": "me",
+        "start": 13.4612,
+        "end": 13.7471
+      },
+      {
+        "text": "questions",
+        "start": 13.8371,
+        "end": 14.4403
+      },
+      {
+        "text": "before",
+        "start": 14.5303,
+        "end": 14.9605
+      },
+      {
+        "text": "you",
+        "start": 15.0505,
+        "end": 15.3185
+      },
+      {
+        "text": "answer",
+        "start": 15.4085,
+        "end": 15.8525
+      }
+    ],
+    "line1End": 3.5833,
+    "adlibStart": 8.6733,
+    "adlibEnd": 12.1017,
+    "line2Start": 12.9917,
+    "lines": [
+      "Stop typing plain prompts into Claude",
+      "Ask me questions before you answer",
+      "Give me three options and pick the best one",
+      "Write this for a busy owner who reads on their phone",
+      "Critique your answer like a tough editor",
+      "Save this before your next prompt"
+    ]
+  }
+}

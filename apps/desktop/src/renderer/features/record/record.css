@@ -1,0 +1,33 @@
+.rec { display: grid; grid-template-columns: 320px 1fr 320px; gap: 10px; height: 100%; padding: 10px; }
+.rec .side { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.rec .section { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 8px; }
+.rec .section h3 { margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); font-weight: 600; }
+.rec textarea.script { min-height: 220px; flex: 1; font: 14px/1.5 var(--font); }
+.rec .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; align-items: center; }
+.rec .stage { position: relative; display: grid; grid-template-rows: 1fr auto; gap: 10px; min-height: 0; }
+.rec .preview { position: relative; background: #000; border-radius: 10px; overflow: hidden; display: grid; place-items: center; min-height: 0; }
+.rec .preview video { max-width: 100%; max-height: 100%; transform: scaleX(-1); }
+.rec .preview .overlay { position: absolute; inset: 0; pointer-events: none; }
+.rec .safe916 { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); aspect-ratio: 9 / 16; border-left: 1px dashed rgba(245,184,61,.7); border-right: 1px dashed rgba(245,184,61,.7); }
+.rec .thirds { position: absolute; inset: 0; background-image: linear-gradient(to right, transparent 33.2%, rgba(255,255,255,.25) 33.3%, transparent 33.4%, transparent 66.6%, rgba(255,255,255,.25) 66.7%, transparent 66.8%), linear-gradient(to bottom, transparent 33.2%, rgba(255,255,255,.25) 33.3%, transparent 33.4%, transparent 66.6%, rgba(255,255,255,.25) 66.7%, transparent 66.8%); }
+.rec .eyeline { position: absolute; left: 0; right: 0; top: 33%; border-top: 1px solid rgba(95,168,255,.6); }
+.rec .count { position: absolute; inset: 0; display: grid; place-items: center; font-size: 160px; font-weight: 800; color: #fff; text-shadow: 0 4px 30px rgba(0,0,0,.7); }
+.rec .recbar { display: flex; align-items: center; gap: 12px; padding: 10px 12px; }
+.rec .recbtn { width: 64px; height: 64px; border-radius: 50%; border: 4px solid #fff; background: var(--danger); font-weight: 700; color: #fff; }
+.rec .recbtn.on { border-radius: 14px; width: 56px; height: 56px; margin: 4px; }
+.rec .meter { width: 160px; height: 8px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
+.rec .meter > i { display: block; height: 100%; background: linear-gradient(to right, var(--ok), var(--accent) 70%, var(--danger)); transition: width .08s linear; }
+.rec .timer { font: 600 20px var(--mono); }
+.rec .hint { color: var(--text-faint); font-size: 12px; }
+.rec .error { color: var(--danger-text); background: rgba(255,93,93,.08); border: 1px solid rgba(255,93,93,.35); border-radius: 8px; padding: 8px 10px; }
+.rec .take { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.rec .take .t { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rec .take .meta { color: var(--text-faint); font-size: 11px; }
+.rec .stars button { background: none; border: none; padding: 0 1px; color: var(--text-faint); font-size: 14px; }
+.rec .stars button.on { color: var(--accent); }
+.rec .mini { padding: 3px 8px; font-size: 12px; }
+.rec .seg { display: flex; gap: 2px; background: var(--bg-3); border-radius: 7px; padding: 2px; }
+.rec .seg button { flex: 1; border: none; background: transparent; padding: 5px 6px; font-size: 12px; }
+.rec .seg button[aria-pressed='true'] { background: var(--bg-1); color: var(--accent); }
+.rec .line-preview { font-size: 13px; color: var(--text-dim); max-height: 120px; overflow: auto; }
+.rec .line-preview .cur { color: var(--accent); }

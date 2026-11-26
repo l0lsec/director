@@ -1,0 +1,40 @@
+.swipe { display: grid; grid-template-columns: 220px 1fr 400px; gap: 8px; padding: 8px; height: 100%; min-height: 0; }
+.swipe-side { display: flex; flex-direction: column; min-height: 0; overflow: auto; padding-bottom: 12px; }
+.swipe-side .nav { display: flex; flex-direction: column; padding: 0 6px; }
+.swipe-side .nav button { text-align: left; background: transparent; border: 0; padding: 5px 8px; border-radius: 6px; display: flex; justify-content: space-between; color: var(--text-dim); }
+.swipe-side .nav button[aria-pressed='true'] { background: var(--bg-3); color: var(--text); }
+.swipe-side .nav button .n { color: var(--text-faint); font-variant-numeric: tabular-nums; }
+.swipe-side select { margin: 0 12px; }
+.swipe-main { display: flex; flex-direction: column; min-height: 0; }
+.swipe-bar { display: flex; gap: 6px; padding: 8px; align-items: center; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.swipe-bar input[type='search'] { flex: 1; min-width: 160px; }
+.swipe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; padding: 10px; overflow: auto; align-content: start; }
+.ref-card { display: flex; flex-direction: column; gap: 4px; text-align: left; padding: 0; overflow: hidden; background: var(--bg-2); }
+.ref-card[aria-pressed='true'] { border-color: var(--accent); }
+.ref-card video { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #000; display: block; pointer-events: none; }
+.ref-card .meta { padding: 6px 8px 8px; display: flex; flex-direction: column; gap: 3px; }
+.ref-card .title { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ref-card .stats { color: var(--text-faint); font-size: 11px; font-variant-numeric: tabular-nums; }
+.swipe-detail { display: flex; flex-direction: column; min-height: 0; overflow: auto; padding: 10px 12px 16px; gap: 10px; }
+.swipe-detail video { width: 100%; max-height: 360px; background: #000; border-radius: 6px; }
+.swipe-detail .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 8px; }
+.swipe-detail .field { display: flex; flex-direction: column; gap: 3px; }
+.swipe-detail h4 { margin: 6px 0 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); }
+.hint { color: var(--text-faint); font-size: 12px; margin: 0; }
+.err { color: var(--danger-text); font-size: 12px; }
+.pacing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.pacing .stat { background: var(--bg-2); border-radius: 6px; padding: 6px 8px; }
+.pacing .stat b { display: block; font-size: 16px; font-variant-numeric: tabular-nums; }
+.pacing .stat span { color: var(--text-faint); font-size: 11px; }
+.shotbar, .segbar { position: relative; height: 22px; background: var(--bg-2); border-radius: 4px; overflow: hidden; }
+.shotbar i { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--accent); }
+.segbar span { position: absolute; top: 0; bottom: 0; display: grid; place-items: center; font-size: 10px; color: #111; font-weight: 700; text-transform: uppercase; overflow: hidden; border-right: 1px solid rgba(0,0,0,0.35); }
+.seg-hook { background: #f5b83d; } .seg-setup { background: #7c8cff; } .seg-value { background: #4fd18b; } .seg-proof { background: #3dd6d0; } .seg-payoff { background: #ff7cc8; } .seg-cta { background: #ff8a5f; } .seg-other { background: #9aa3b5; }
+.seglist { display: flex; flex-direction: column; gap: 4px; }
+.seglist div { display: grid; grid-template-columns: 64px 90px 1fr; gap: 6px; font-size: 12px; }
+.compare { width: 100%; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; }
+.compare td, .compare th { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: right; }
+.compare td:first-child, .compare th:first-child { text-align: left; }
+.compare .note td { text-align: left; color: var(--accent); border-bottom: 0; padding-top: 0; }
+.tagrow { display: flex; flex-wrap: wrap; gap: 4px; }
+.dropzone { outline: 2px dashed var(--accent); outline-offset: -6px; }

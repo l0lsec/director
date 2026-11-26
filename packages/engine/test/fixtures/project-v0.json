@@ -1,0 +1,14 @@
+{
+  "version": 0,
+  "name": "Prototype reel",
+  "id": "proj_legacy01",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "created": "2026-01-02T03:04:05.000Z",
+  "modified": "2026-01-03T03:04:05.000Z",
+  "tracks": [
+    { "type": "video", "clips": [ { "src": "/Users/me/Movies/take1.mp4", "start": 0, "in": 1.5, "out": 9.25, "sourceDuration": 30 }, { "src": "/Users/me/Movies/take2.mp4", "start": 7.75, "in": 0, "out": 4, "speed": 2 } ] },
+    { "type": "audio", "clips": [ { "src": "/Users/me/Music/bed.mp3", "start": 0, "out": 12, "volumeDb": -18 } ] }
+  ]
+}
