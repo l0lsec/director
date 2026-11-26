@@ -1,5 +1,7 @@
 import type { MediaRef, Project, Template } from '@director/engine';
 
+export interface BrowsedFile { name: string; path: string; rel: string; type: 'dir' | 'video' | 'audio' | 'image'; size: number; mtimeMs: number }
+
 /** Everything outside the pure project model that agent tools use. The desktop app implements it in the window. */
 export interface AgentHost {
   info(): { app: string; version: string; mode: 'ask' | 'auto'; projectDir: string | null; workspace: string };
@@ -10,6 +12,10 @@ export interface AgentHost {
   revertAgentChanges(): { reverted: number };
 
   importMedia(paths: string[], role?: MediaRef['role']): Promise<{ added: MediaRef[]; existing: MediaRef[]; failed: Array<{ path: string; error: string }> }>;
+  /** Folders the person opened in the Files panel (browsing is limited to them), and what is in them. */
+  fileRoots?(): Promise<{ roots: string[]; current: string | null }>;
+  listFolder?(dir: string): Promise<{ dir: string; entries: BrowsedFile[]; skipped: number }>;
+  searchFolder?(dir: string, query: string, kind?: 'video' | 'audio' | 'image'): Promise<{ results: BrowsedFile[]; truncated: boolean }>;
   /** Transcribe speech media; returns per-media word counts. */
   transcribe(opts: { mediaIds?: string[]; force?: boolean; model?: string }): Promise<Array<{ mediaId: string; words: number; language: string }>>;
   processAudio(clipId: string, opts: { denoise?: boolean; enhance?: boolean }): Promise<boolean>;

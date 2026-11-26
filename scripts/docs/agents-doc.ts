@@ -66,7 +66,7 @@ export function render(): string {
     '',
     'Director also has its own chat: the **Assistant** panel in the Edit workspace (Cmd+J). Type what you want in your own words and Claude works through it with this same catalog, using your API key from Settings. It needs no connection setup, follows the same Ask and Auto modes, and labels its changes "Assistant" so the Agent panel can revert them.',
     '',
-    'Inside the app only text reaches Anthropic: your messages, the transcript and what the tools report. File paths are replaced with `[path]`, media file names lose their extension, and the tools that return pictures or need file paths (`render_frame`, `render_contact_sheet`, `import_media`) are left out. An assistant connected over MCP runs on your side of the connection, so it can use every tool.',
+    'Inside the app only text reaches Anthropic: your messages, the transcript and what the tools report. File paths are replaced with `[path]`, media file names lose their extension, and the tools that return pictures or need file paths (`render_frame`, `render_contact_sheet`, `import_media`, `browse_files`) are left out. An assistant connected over MCP runs on your side of the connection, so it can use every tool.',
     '',
     '## Safety',
     '',

@@ -70,7 +70,7 @@ describe('assistant turn', () => {
     expect(rs.map((x) => [x.tool_use_id, x.is_error])).toEqual([['a', true], ['b', true]]);
     expect(rs[0]!.content).toContain('NOT_AVAILABLE');
     expect(r.stop).toBe('done');
-    expect([...ASSISTANT_EXCLUDED].sort()).toEqual(['import_media', 'render_contact_sheet', 'render_frame']);
+    expect([...ASSISTANT_EXCLUDED].sort()).toEqual(['browse_files', 'import_media', 'render_contact_sheet', 'render_frame']);
   });
 
   it('does not run a tool call that was cut off, and the next message continues the same conversation', async () => {

@@ -3,6 +3,7 @@ import { WORKSPACES, preloadWorkspaces } from './shell/workspaces';
 import { useShell } from './shell/store';
 import { CommandPalette } from './features/palette/CommandPalette';
 import { Toasts } from './shell/Toasts';
+import { ContextMenuHost } from './shell/ContextMenu';
 import { PromptHost } from './shell/prompt';
 import { SettingsModal, openSettings } from './features/settings/SettingsModal';
 import { initAgent } from './features/agent/init';
@@ -74,6 +75,7 @@ export function App() {
       </main>
       <CommandPalette />
       <Toasts />
+      <ContextMenuHost />
       <PromptHost />
       <SettingsModal />
       <AgentApprovals />

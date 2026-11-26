@@ -9,6 +9,8 @@ import type { Structure, Draft, HookIdea, VoiceCheck, ReleaseCopy, DirectorActio
 import type { UsageSummary } from '@director/library';
 import type { RefAnalysis } from '../library/handlers';
 import type { McpStatus } from '../mcp/server';
+import type { FileRoots } from '../files/handlers';
+import type { Listing, SearchResult } from '../files/browse';
 
 /** Phantom-typed channel definition: zod validates input, TypeScript carries the output type. */
 export const ch = <O>() => <I extends z.ZodType>(input: I) => ({ input, __out: null as unknown as O });
@@ -78,6 +80,13 @@ export const channels = {
   'media:relink': ch<string | null>()(z.object({ hash: z.string().min(8).max(128), size: z.number().int().optional(), dirs: z.array(Path).min(1).max(20) }).strict()),
   'media:proxy': ch<string>()(z.object({ path: Path, projectDir: Path.optional() }).strict()),
   'media:size': ch<number | null>()(z.object({ path: Path }).strict()),
+  'files:roots': ch<FileRoots>()(Empty),
+  'files:addRoot': ch<FileRoots>()(z.object({ path: Path }).strict()),
+  'files:removeRoot': ch<FileRoots>()(z.object({ path: Path }).strict()),
+  'files:setCurrent': ch<FileRoots>()(z.object({ path: Path }).strict()),
+  'files:list': ch<Listing>()(z.object({ dir: Path }).strict()),
+  'files:search': ch<SearchResult>()(z.object({ dir: Path, q: z.string().max(200), kinds: z.array(z.enum(['video', 'audio', 'image'])).max(3).optional(), limit: z.number().int().min(1).max(1000).optional() }).strict()),
+  'files:thumb': ch<string | null>()(z.object({ path: Path }).strict()),
   'export:defaultDir': ch<string>()(Empty),
   'export:begin': ch<{ id: string; tmp: string }>()(z.object({ path: Path }).strict()),
   'export:write': ch<number>()(z.object({ id: z.string().uuid(), position: z.number().int().nonnegative(), data: z.instanceof(Uint8Array) }).strict()),
@@ -158,6 +167,7 @@ export interface Events {
   'claude:usage': { task: string; costUsd: number };
   'mcp:status': McpStatus;
   'agent:call': { requestId: string; client: string; tool: string; args: unknown };
+  'files:changed': { root: string; dirs: string[] };
 }
 export type EventName = keyof Events;
 export type EventPayload<E extends EventName> = Events[E];

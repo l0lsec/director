@@ -2,7 +2,7 @@
 
 A desktop video studio for talking-head content on the Mac: write the script, read it off a teleprompter that sits under your webcam while you record, and let the app cut, caption, frame and export the video. Short-form reels and long-form YouTube episodes both work. Everything runs on your Mac; no subscription, no upload.
 
-Director is also built to be driven by AI. Chat with Claude in the app's Assistant panel, or plug in Claude Code, Claude Desktop or any MCP client: either way it can run every editing operation (97 tools), with your approval or on its own, and every change is one undo step.
+Director is also built to be driven by AI. Chat with Claude in the app's Assistant panel, or plug in Claude Code, Claude Desktop or any MCP client: either way it can run every editing operation (98 tools), with your approval or on its own, and every change is one undo step.
 
 ## What it does
 
@@ -12,6 +12,7 @@ Five workspaces, in the order you work:
 - **Script**: write or draft scripts, keep versions, pick hooks, and see the runtime at your own reading speed.
 - **Record**: a desktop teleprompter in its own always-on-top window, placed under the camera so your eyes stay on the lens. It follows your voice as you read. Records camera, microphone and optionally the screen.
 - **Edit**: a lane-based timeline (camera, screen, b-roll, titles, captions, voice, music, sound effects) with text-based editing on the transcript:
+  - **Files**: open the folder you keep your footage, music, sound effects and images in, browse it with thumbnails, previews and search, and put files on the timeline with a double-click, Enter, a drag or a right-click. Files in category folders go to the matching lane (Music, SFX, B-roll, Screen recordings, A-roll), and new files show up as they land.
   - **Cutting**: AutoCut removes pauses, fillers and retakes; one-click Make Reel builds a first cut from a recording.
   - **Speaker layout**: for interviews and podcasts, including split-screen remote recordings. It cuts to whoever is talking from lip movement, shows both people during quick exchanges and reactions, and alternates framing in long answers.
   - **Look and sound**: captions with styles; titles, lower thirds and shapes; colour, LUTs, zoom, shake, blur, masks, chroma key and background removal; speed ramps; transitions; keyframes; music ducking under the voice; beat markers; voice clean-up.
@@ -70,7 +71,7 @@ xattr -dr com.apple.quarantine Director.app
 
 Open the **Assistant** panel in the Edit workspace (Cmd+J) and say what you want in your own words: "remove the long pauses", "cut to whoever is talking", "add a title over the hook and captions for the whole thing". Claude reads the timeline and transcript, makes the edits with the same tools external assistants use, and tells you what changed. It uses your Anthropic API key from Settings.
 
-The Ask and Auto modes below apply here too, and every change is one undo step. Pictures, file paths and file names stay on your Mac, so the built-in assistant cannot look at frames or import files. Drag media in yourself, or connect Claude Desktop or Claude Code if you want an assistant that can see frames.
+The Ask and Auto modes below apply here too, and every change is one undo step. Pictures, file paths and file names stay on your Mac, so the built-in assistant cannot look at frames or import files. Add files from the Files panel yourself, or connect Claude Desktop or Claude Code if you want an assistant that can see frames.
 
 ## Connect an AI assistant
 

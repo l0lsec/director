@@ -108,6 +108,15 @@ export function makeCtx(doc: Project = buildFixture(), opts: { approve?: (r: App
       if (method === 'studio.versions') return [{ n: 1, text: 'Stop typing plain prompts.', wpm: 150, targetSec: 30 }, { n: 2, text: 'Stop typing plain prompts.\n[ZOOM]\nGive Claude a role and a goal.', wpm: 160, targetSec: 30 }];
       throw new Error(`fake library: ${method}`);
     },
+    // A content folder opened in the Files panel: category folders with a few files.
+    fileRoots: async () => ({ roots: ['/Users/me/Content'], current: '/Users/me/Content' }),
+    listFolder: async (dir) => {
+      const f = (rel: string, type: 'dir' | 'video' | 'audio' | 'image', size = 0) => ({ name: rel.split('/').pop()!, path: `/Users/me/Content/${rel}`, rel, type, size, mtimeMs: 0 });
+      if (dir === '/Users/me/Content') return { dir, entries: [f('B-Roll', 'dir'), f('Music', 'dir'), f('SFX', 'dir')], skipped: 1 };
+      if (dir === '/Users/me/Content/SFX') return { dir, entries: [f('SFX/whoosh.wav', 'audio', 120_000)], skipped: 0 };
+      throw Object.assign(new Error(`${dir} does not exist`), { code: 'NOT_FOUND' });
+    },
+    searchFolder: async (_dir, query) => ({ results: 'whoosh'.includes(query.toLowerCase()) ? [{ name: 'whoosh.wav', path: '/Users/me/Content/SFX/whoosh.wav', rel: 'SFX/whoosh.wav', type: 'audio' as const, size: 120_000, mtimeMs: 0 }] : [], truncated: false }),
     importMedia: async (paths, role) => {
       const added = paths.map((p, i) => media(`media_new${i}`, p.split('/').pop()!, /\.(wav|mp3|m4a)$/i.test(p) ? 'audio' : /\.(png|jpe?g)$/i.test(p) ? 'image' : 'video', 10, { role, path: p }));
       const ops: Op[] = added.filter((m) => !history.doc.media[m.id]).map((m) => ({ op: 'addMedia', media: m }));

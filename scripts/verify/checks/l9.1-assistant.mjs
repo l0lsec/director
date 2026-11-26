@@ -62,7 +62,7 @@ export default async function () {
     for (const { request } of reqs) {
       const sent = JSON.stringify(request.messages);
       for (const bad of ['/Users/', '/private/', '/var/folders', '.mp4', '.wav', 'data:image']) assert(!sent.includes(bad), `a request carries ${bad}`);
-      assert(!request.tools.some((t) => ['render_frame', 'render_contact_sheet', 'import_media'].includes(t.name)) && request.tools.length >= 90, `tools: ${request.tools.length}`);
+      assert(!request.tools.some((t) => ['render_frame', 'render_contact_sheet', 'import_media', 'browse_files'].includes(t.name)) && request.tools.length >= 90, `tools: ${request.tools.length}`);
       assert(request.tools.every((t) => t.eager_input_streaming === true) && request.system[0].cache_control && request.cache_control, 'request is not cached or streamed as built');
     }
     const second = reqs[1].request.messages;

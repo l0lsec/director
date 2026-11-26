@@ -1,3 +1,4 @@
+import { placeFiles, lanesFor, type PickedFile } from '../files/actions';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   clipDuration, clipEnd, findClip, snapTime, moveClipOps, trimOps, splitOps, slipOps, rollOps, timelineDuration, formatTimecode,
@@ -286,11 +287,20 @@ export function Timeline() {
   const onDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setEdit({ dragOverLane: null });
-    const id = e.dataTransfer.getData('application/x-director-media');
-    const m = id ? getLibraryMedia(id) : null;
-    if (!m || !doc) return;
+    if (!doc) return;
     const { x, y } = local(e);
     const row = rows.find((r) => y >= r.y && y < r.y + r.h);
+    const files = e.dataTransfer.getData('application/x-director-files');
+    if (files) {
+      // From the Files panel: import, then place at the drop time; on the lane under the pointer when every file fits it.
+      const picked = JSON.parse(files) as PickedFile[];
+      const fits = row && picked.every((f) => lanesFor(f.path).includes(row.kind));
+      void placeFiles(picked, { placement: { mode: 'at', t: snap(xToTime(x, zoom, scrollX), new Set()) }, lane: fits ? row.kind : undefined });
+      return;
+    }
+    const id = e.dataTransfer.getData('application/x-director-media');
+    const m = id ? getLibraryMedia(id) : null;
+    if (!m) return;
     addMediaToTimeline(m, snap(xToTime(x, zoom, scrollX), new Set()), row && (AUDIO_LANES.has(row.kind) ? m.hasAudio : m.hasVideo) ? row.id : undefined);
   };
 

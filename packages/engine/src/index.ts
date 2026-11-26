@@ -13,3 +13,4 @@ export * from './ops/advanced';
 export * from './ops/templates';
 export * from './catalog';
 export * from './ops/speakers';
+export * from './files';

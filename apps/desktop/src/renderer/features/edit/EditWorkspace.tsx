@@ -10,6 +10,7 @@ import { handleEditKey, setPreset, type PresetName } from './keymap/keymap';
 import { invoke } from '../../shell/bridge';
 import './commands';
 import { getEditPanels } from './panels';
+import './files/FilesPanel';
 import './transcript/TranscriptPanel';
 import './autocut/AutoCutPanel';
 import './captions/CaptionsPanel';

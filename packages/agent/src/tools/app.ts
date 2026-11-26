@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { EXPORT_PRESETS, makeTemplate, timelineDuration, type Op } from '@director/engine';
+import { EXPORT_PRESETS, makeTemplate, timelineDuration, guessRole, type Op } from '@director/engine';
 import { captionsToSubtitles, timelineWords } from '@director/analysis';
 import { AgentError, defineAct, defineRead, labelFor, noProject, type AgentContext, type ToolDef } from '../core';
 import { Ref, Seconds, clipRef, sec, us } from '../units';
@@ -51,6 +51,42 @@ export function appTools(): ToolDef[] {
         const r = await host(ctx, 'importMedia')(a.paths, a.role);
         const v = (m: { id: string; name: string; kind: string; durationUs: number; hasAudio: boolean }) => ({ id: m.id, name: m.name, kind: m.kind, duration: sec(m.durationUs), hasAudio: m.hasAudio });
         return { added: r.added.map(v), alreadyInProject: r.existing.map(v), failed: r.failed, revision: ctx.revision(), next: r.added.length ? 'Place them with add_clip {"media": id}.' : undefined };
+      },
+    }),
+    defineRead({
+      name: 'browse_files', title: 'Browse the media folder', group: 'media',
+      description: 'List what is in the content folder the person opened in the Files panel (or a folder inside it), or search below it by words in the path. Folders and video, audio and image files come back with absolute paths, sizes, whether each is already in the project, and the role its category folder suggests (a "Music" folder suggests music, "SFX" sfx, "B-roll" broll, "Screen recordings" screen). Then import_media {paths, role} and add_clip. Only folders the person opened can be browsed.',
+      input: {
+        folder: z.string().min(2).max(4096).refine((p) => p.startsWith('/'), 'absolute path').optional().describe('A folder inside an opened folder; default the opened folder itself'),
+        query: z.string().min(1).max(200).optional().describe('Words that must all appear in the path below the opened folder, e.g. "drone sunset"'),
+        kind: z.enum(['video', 'audio', 'image']).optional(),
+      },
+      examples: [{ args: {} }, { args: { query: 'whoosh', kind: 'audio' }, note: 'find sound effects anywhere below the folder' }],
+      run: async (ctx, a) => {
+        const { roots, current } = await host(ctx, 'fileRoots')();
+        if (!roots.length) throw new AgentError('NO_FOLDER', 'No folder is open in the Files panel.', 'Ask the person to open their media folder in Edit > Files, or use import_media with paths they give you.');
+        const folder = a.folder ?? current ?? roots[0]!;
+        const root = roots.find((r) => folder === r || folder.startsWith(`${r.replace(/\/+$/, '')}/`));
+        if (!root) throw new AgentError('OUTSIDE_ROOTS', `${folder} is not inside a folder opened in the Files panel.`, `Opened: ${roots.join(', ')}`);
+        const inProject = new Set(Object.values(ctx.getDoc()?.media ?? {}).map((m) => m.path));
+        const view = (e: { name: string; path: string; rel: string; type: string; size: number }) => {
+          if (e.type === 'dir') return { name: e.name, path: e.path, type: 'folder' };
+          const g = guessRole(e.rel, e.type as 'video' | 'audio' | 'image');
+          return { name: e.name, path: e.path, type: e.type, sizeMB: Math.round(e.size / 1e5) / 10, inProject: inProject.has(e.path) || undefined, suggestedRole: g?.role, suggestedLane: g?.lane };
+        };
+        try {
+          if (a.query) {
+            const r = await host(ctx, 'searchFolder')(folder, a.query, a.kind);
+            return { openedFolders: roots, folder, query: a.query, results: r.results.map(view), truncated: r.truncated || undefined, next: 'import_media {"paths": [...], "role": suggestedRole}, then add_clip.' };
+          }
+          const l = await host(ctx, 'listFolder')(folder);
+          const entries = l.entries.filter((e) => !a.kind || e.type === 'dir' || e.type === a.kind).map(view);
+          return { openedFolders: roots, folder, entries, otherFilesHidden: l.skipped || undefined, next: 'browse_files {"folder": path} opens a subfolder; import_media then add_clip puts files on the timeline.' };
+        } catch (e) {
+          if (e instanceof AgentError) throw e;
+          const err = e as { code?: string; message?: string };
+          throw new AgentError(err.code ?? 'BROWSE_FAILED', err.message ?? String(e), 'browse_files with no folder lists the opened folder.');
+        }
       },
     }),
     defineRead({ name: 'list_takes', title: 'Recorded takes', group: 'media', description: 'Takes recorded with the teleprompter for this project, newest first: id, title, length (seconds), star rating, how many retake and cue markers, whether a screen recording and a script came with it. add_take puts one on the timeline.', input: {}, examples: [{ args: {} }], run: async (ctx) => ({ takes: (await host(ctx, 'listTakes')()).map((t) => ({ id: t.id, title: t.title, createdAt: t.createdAt, duration: sec(t.durationUs), rating: t.rating, markers: t.markers, screen: t.hasScreen, script: t.hasScript })) }) }),

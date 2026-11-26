@@ -52,7 +52,7 @@ Alternatives considered:
 |                                          director-native (spawn, progress, cancel)    |
 |  Project store: autosave, journal,       Library DB (SQLite)                          |
 |  migrations                              Claude client (Keychain key, usage log)      |
-|  MCP / REST server (opt-in, 127.0.0.1)                                                |
+|  MCP / REST server (opt-in, 127.0.0.1)    Files: browse, search, thumbnails, watcher  |
 +-------------------------------- typed IPC (zod-validated) ----------------------------+
 |  Renderer (React)                                                                     |
 |   Swipe | Script | Record | Edit | Export workspaces, command palette, inspector      |
@@ -71,6 +71,7 @@ Alternatives considered:
 4. **Proxies are automatic.** Media that is too heavy or that WebCodecs cannot decode gets a short-GOP H.264 proxy. Preview uses proxies; export always uses the originals.
 5. **Heavy work never blocks the UI.** Transcription, proxies, analysis and export run as cancellable jobs with progress.
 6. **The native helper is replaceable.** It speaks versioned JSON lines over stdio, so any capability can later get a cross-platform fallback without touching the app.
+7. **Browsing stays inside folders the person opened.** The Files panel lists and searches only folders chosen in it (remembered in settings), and the `browse_files` agent tool goes through the same check, so an agent cannot wander the disk.
 
 ## Data model
 

@@ -65,6 +65,8 @@ export const COMMAND_COVERAGE: Record<string, Coverage> = {
   'edit.loop': { uiOnly: 'Playback looping is a viewing preference' },
   'edit.save': { tool: 'save_project' },
   'edit.director': { tool: 'propose_edits', note: 'the in-app Director is itself an agent; external agents use every tool' },
+  'files.open': { tool: 'browse_files', note: 'lists the opened folder; import_media and add_clip place its files' },
+  'files.openFolder': { uiOnly: 'choosing which folder to open is the person\'s decision; agents browse the folders they opened with browse_files' },
   'assistant.open': { uiOnly: 'opens the in-app assistant chat, which is itself an agent driving these same tools' },
   'edit.freeze': { tool: 'freeze_frame' },
   'edit.reverse': { tool: 'set_clip', note: 'reverse:true' },

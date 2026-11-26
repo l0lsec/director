@@ -2,6 +2,7 @@ import { app, BrowserWindow, shell } from 'electron';
 import { join } from 'node:path';
 import { registerIpc } from './ipc/register';
 import { shutdownJobs } from './jobs/runner';
+import { stopFileWatchers } from './files/handlers';
 import { closeAllSessions } from './store/handlers';
 import { shutdownCapture } from './capture/handlers';
 import { registerMediaScheme, handleMediaProtocol } from './media/protocol';
@@ -88,6 +89,7 @@ app.on('before-quit', () => {
   closeAllSessions();
   shutdownCapture();
   shutdownJobs();
+  stopFileWatchers();
   void stopMcp();
   closeLibrary();
 });

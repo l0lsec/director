@@ -25,9 +25,9 @@ export interface AssistantRequest extends OutgoingRequest {
 
 /**
  * Tools the built-in assistant does not get: the render tools return pictures, and media never leaves the Mac;
- * import_media needs file paths, which are never sent either (the person imports with drag and drop).
+ * import_media and browse_files deal in file paths, which are never sent either (the person adds files from the Files panel).
  */
-export const ASSISTANT_EXCLUDED = new Set(['render_frame', 'render_contact_sheet', 'import_media']);
+export const ASSISTANT_EXCLUDED = new Set(['render_frame', 'render_contact_sheet', 'import_media', 'browse_files']);
 
 export const ASSISTANT_SYSTEM = [
   'You are the assistant built into Director, a desktop video editor on the person\'s Mac for short-form vertical video and long-form YouTube (podcasts, interviews, talking heads).',

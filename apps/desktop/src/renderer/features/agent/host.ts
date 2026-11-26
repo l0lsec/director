@@ -129,6 +129,9 @@ function makeHost(client: string): AgentHost {
     undo: (n) => { let k = 0; for (; k < n && useProject.getState().canUndo; k++) useProject.getState().undo(); return k; },
     redo: (n) => { let k = 0; for (; k < n && useProject.getState().canRedo; k++) useProject.getState().redo(); return k; },
     revertAgentChanges,
+    fileRoots: () => invoke('files:roots', {}),
+    listFolder: (dir) => invoke('files:list', { dir }),
+    searchFolder: (dir, query, kind) => invoke('files:search', { dir, q: query, kinds: kind ? [kind] : undefined, limit: 300 }),
     importMedia: (paths, role) => tagged(client, async () => {
       const res = await invoke('media:import', { paths, projectDir: projectDir(), role });
       const d = doc()!;
