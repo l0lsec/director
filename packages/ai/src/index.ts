@@ -4,3 +4,4 @@ export * from './client/claude';
 export * from './structure';
 export * from './script';
 export * from './director';
+export * from './assistant';

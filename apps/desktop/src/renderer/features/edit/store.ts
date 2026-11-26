@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import type { LaneKind } from '@director/engine';
 
 export type Tool = 'select' | 'blade' | 'slip' | 'roll';
-export type Panel = 'media' | 'transcript' | 'text' | 'audio' | 'effects' | 'captions' | 'director' | 'agent';
+export type Panel = 'media' | 'transcript' | 'text' | 'audio' | 'effects' | 'captions' | 'director' | 'assistant' | 'agent';
 
 interface EditState {
   t: number;

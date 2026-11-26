@@ -22,12 +22,16 @@ export interface ClaudeResponse {
   model: string;
   stop_reason: string | null;
   stop_details?: { category?: string | null; explanation?: string | null } | null;
-  content: Array<{ type: string; text?: string }>;
+  /** Text blocks, plus tool_use and thinking blocks in assistant conversations (kept verbatim). */
+  content: Array<{ type: string; text?: string; [k: string]: unknown }>;
   usage: UsageBlock;
 }
 
+/** Anything the transport can send: a structured call, or an assistant step with tools. */
+export type TransportRequest = OutgoingRequest & { model: string; max_tokens: number };
+
 export interface Transport {
-  send(req: ClaudeRequest, opts: { task: string; onText?: (delta: string) => void; signal?: AbortSignal }): Promise<ClaudeResponse>;
+  send(req: TransportRequest, opts: { task: string; onText?: (delta: string) => void; signal?: AbortSignal }): Promise<ClaudeResponse>;
 }
 
 export type ClaudeErrorCode = 'NO_KEY' | 'AUTH' | 'RATE_LIMIT' | 'OVERLOADED' | 'NETWORK' | 'REFUSAL' | 'TRUNCATED' | 'INVALID_OUTPUT' | 'API' | 'CANCELLED';
@@ -146,13 +150,14 @@ export function mapSdkError(e: unknown): ClaudeError {
  * would have been sent, for privacy checks and for asserting request shape.
  */
 export class ReplayTransport implements Transport {
+  /** Typed as a structured call (most tests read those fields); assistant steps are logged the same way. */
   readonly log: Array<{ task: string; request: ClaudeRequest; json: string }> = [];
   private queues = new Map<string, ClaudeResponse[]>();
   constructor(recordings: Record<string, ClaudeResponse | ClaudeResponse[]>) {
     for (const [task, r] of Object.entries(recordings)) this.queues.set(task, Array.isArray(r) ? [...r] : [r]);
   }
-  async send(req: ClaudeRequest, { task, onText }: { task: string; onText?: (d: string) => void }): Promise<ClaudeResponse> {
-    this.log.push({ task, request: req, json: JSON.stringify(req) });
+  async send(req: TransportRequest, { task, onText }: { task: string; onText?: (d: string) => void }): Promise<ClaudeResponse> {
+    this.log.push({ task, request: req as ClaudeRequest, json: JSON.stringify(req) });
     const q = this.queues.get(task);
     if (!q?.length) throw new ClaudeError('API', `no recorded response left for task "${task}"`);
     const res = q.shift()!;

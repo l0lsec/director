@@ -2,7 +2,7 @@
 
 A desktop video studio for talking-head content on the Mac: write the script, read it off a teleprompter that sits under your webcam while you record, and let the app cut, caption, frame and export the video. Short-form reels and long-form YouTube episodes both work. Everything runs on your Mac; no subscription, no upload.
 
-Director is also built to be driven by AI assistants. Claude Code, Claude Desktop or any MCP client can plug in and run every editing operation (97 tools), with your approval or on its own, and every change is one undo step.
+Director is also built to be driven by AI. Chat with Claude in the app's Assistant panel, or plug in Claude Code, Claude Desktop or any MCP client: either way it can run every editing operation (97 tools), with your approval or on its own, and every change is one undo step.
 
 ## What it does
 
@@ -66,6 +66,12 @@ A downloaded, unsigned copy is blocked by Gatekeeper the first time. Right-click
 xattr -dr com.apple.quarantine Director.app
 ```
 
+## Edit by chatting
+
+Open the **Assistant** panel in the Edit workspace (Cmd+J) and say what you want in your own words: "remove the long pauses", "cut to whoever is talking", "add a title over the hook and captions for the whole thing". Claude reads the timeline and transcript, makes the edits with the same tools external assistants use, and tells you what changed. It uses your Anthropic API key from Settings.
+
+The Ask and Auto modes below apply here too, and every change is one undo step. Pictures, file paths and file names stay on your Mac, so the built-in assistant cannot look at frames or import files. Drag media in yourself, or connect Claude Desktop or Claude Code if you want an assistant that can see frames.
+
 ## Connect an AI assistant
 
 In Director, open Settings (Cmd+,), turn on **Connect an AI**, and copy the setup for your app: a one-line command for Claude Code, a config entry for Claude Desktop, or an HTTP endpoint for other MCP clients and plain REST. It listens on 127.0.0.1 only, behind a token.
@@ -107,7 +113,7 @@ The code keeps to TypeScript that Node can run by stripping types (`erasableSynt
 
 ## Privacy
 
-Media never leaves your Mac. Transcription, face tracking and background removal run on device. When Claude features are used, only text goes to Anthropic (script text, transcript words, timings). A privacy guard blocks file paths, file names and media from every request, and Settings shows a usage log of each call (task, tokens, cost).
+Media never leaves your Mac. Transcription, face tracking and background removal run on device. When Claude features are used, including the Assistant chat, only text goes to Anthropic (script text, your chat messages, transcript words, timings and a text description of the timeline). A privacy guard blocks file paths, file names and media from every request, and Settings shows a usage log of each call (task, tokens, cost).
 
 ## Licenses of bundled tools
 

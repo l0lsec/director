@@ -5,7 +5,7 @@ import type { Transcript } from '../transcribe/transcribe';
 import type { ModelInfo } from '../transcribe/models';
 import { OpSchema, TakeSchema, TakeMarkerSchema, MediaRefSchema, type Project, type Take, type MediaRef } from '@director/engine';
 import type { ImportResult } from '@director/library';
-import type { Structure, Draft, HookIdea, VoiceCheck, ReleaseCopy, DirectorAction, ActionProblem, PreviewItem, ActionType } from '@director/ai';
+import type { Structure, Draft, HookIdea, VoiceCheck, ReleaseCopy, DirectorAction, ActionProblem, PreviewItem, ActionType, StepResult } from '@director/ai';
 import type { UsageSummary } from '@director/library';
 import type { RefAnalysis } from '../library/handlers';
 import type { McpStatus } from '../mcp/server';
@@ -122,6 +122,11 @@ export const channels = {
   'claude:director': ch<{ summary: string; actions: DirectorAction[]; plan: { ok: boolean; problems: ActionProblem[]; preview: PreviewItem[]; before: number; after: number; removedUs: number; counts: Record<ActionType, number> }; costUsd: number }>()(z.object({
     doc: z.unknown(), goal: z.string().max(4000), brandId: Id.nullable().optional(), refId: Id.nullable().optional(), targetSec: z.number().min(5).max(3600).nullable().optional(),
   }).strict()),
+  'assistant:step': ch<StepResult>()(z.object({
+    messages: z.array(z.object({ role: z.enum(['user', 'assistant']), content: z.array(z.object({ type: z.string().max(64) }).passthrough()).max(500) }).strict()).min(1).max(5000),
+    requestId: Id,
+  }).strict()),
+  'assistant:cancel': ch<boolean>()(z.object({ requestId: Id }).strict()),
   'mcp:status': ch<McpStatus>()(Empty),
   'mcp:enable': ch<McpStatus>()(z.object({ on: z.boolean(), rotateToken: z.boolean().optional() }).strict()),
   'agent:setMode': ch<McpStatus>()(z.object({ mode: z.enum(['ask', 'auto']) }).strict()),
@@ -148,6 +153,7 @@ export interface Events {
   'hotkey': { key: string; source: 'global' | 'window' };
   'models:progress': { id: string; got: number; total: number | null };
   'claude:text': { requestId: string; delta: string };
+  'assistant:text': { requestId: string; delta: string };
   'library:changed': Record<string, never>;
   'claude:usage': { task: string; costUsd: number };
   'mcp:status': McpStatus;

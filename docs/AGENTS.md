@@ -15,6 +15,12 @@ In Director open Settings (Cmd+,), turn on **Connect an AI**, and copy the setup
 
 Settings shows the exact snippet with your token. The token is private: anyone with it on this Mac can edit your projects. New token disconnects every app.
 
+## The assistant inside Director
+
+Director also has its own chat: the **Assistant** panel in the Edit workspace (Cmd+J). Type what you want in your own words and Claude works through it with this same catalog, using your API key from Settings. It needs no connection setup, follows the same Ask and Auto modes, and labels its changes "Assistant" so the Agent panel can revert them.
+
+Inside the app only text reaches Anthropic: your messages, the transcript and what the tools report. File paths are replaced with `[path]`, media file names lose their extension, and the tools that return pictures or need file paths (`render_frame`, `render_contact_sheet`, `import_media`) are left out. An assistant connected over MCP runs on your side of the connection, so it can use every tool.
+
 ## Safety
 
 - Listens on 127.0.0.1 only, needs the bearer token, refuses browser origins and foreign Host headers.
@@ -1606,6 +1612,7 @@ Every command in the app is reachable by a tool except these, on purpose:
 - `edit.zoomOut`: Timeline view zoom; agents see the edit with render_contact_sheet.
 - `edit.zoomFit`: Timeline view zoom; agents see the edit with render_contact_sheet.
 - `edit.loop`: Playback looping is a viewing preference.
+- `assistant.open`: opens the in-app assistant chat, which is itself an agent driving these same tools.
 - `record.start`: Recording needs the person in front of the camera; agents edit takes once they are recorded.
 - `record.stop`: Recording needs the person in front of the camera.
 - `record.prompter`: The teleprompter is for the person recording.

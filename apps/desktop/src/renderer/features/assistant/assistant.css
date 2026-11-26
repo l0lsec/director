@@ -1,0 +1,22 @@
+.asst { display: flex; flex-direction: column; gap: 8px; padding: 10px; min-height: 0; flex: 1; }
+.asst-head { justify-content: space-between; gap: 6px; }
+.asst-log { list-style: none; margin: 0; padding: 0 10px 0 0; flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; }
+.asst-msg { white-space: pre-wrap; user-select: text; padding: 7px 9px; border-radius: 8px; line-height: 1.45; }
+.asst-msg.user { align-self: flex-end; max-width: 90%; background: var(--bg-3); }
+.asst-msg.assistant { background: var(--bg-2); }
+.asst-msg.streaming { opacity: 0.85; }
+.asst-msg.note { color: var(--text-faint); font-size: 12px; padding: 2px 4px; }
+.asst-msg.error { color: var(--danger-text); background: var(--bg-2); font-size: 12px; }
+.asst-tool { display: flex; align-items: center; gap: 6px; font-size: 12px; padding: 2px 4px; color: var(--text-dim); }
+.asst-tool-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.asst-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); flex: none; }
+.asst-dot.running { background: var(--accent); animation: asst-pulse 1s ease-in-out infinite; }
+.asst-dot.applied { background: var(--accent); }
+.asst-dot.done { background: var(--text-faint); }
+.asst-dot.rejected, .asst-dot.error { background: var(--danger-text); }
+@keyframes asst-pulse { 50% { opacity: 0.3; } }
+@media (prefers-reduced-motion: reduce) { .asst-dot.running { animation: none; } }
+.asst-empty { display: flex; flex-direction: column; gap: 10px; padding: 4px 0; }
+.asst-suggest { text-align: left; background: var(--bg-2); }
+.asst-compose { display: flex; flex-direction: column; gap: 6px; }
+.asst-compose textarea { resize: vertical; min-height: 56px; }

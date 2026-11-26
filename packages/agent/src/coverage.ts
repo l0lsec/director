@@ -65,6 +65,7 @@ export const COMMAND_COVERAGE: Record<string, Coverage> = {
   'edit.loop': { uiOnly: 'Playback looping is a viewing preference' },
   'edit.save': { tool: 'save_project' },
   'edit.director': { tool: 'propose_edits', note: 'the in-app Director is itself an agent; external agents use every tool' },
+  'assistant.open': { uiOnly: 'opens the in-app assistant chat, which is itself an agent driving these same tools' },
   'edit.freeze': { tool: 'freeze_frame' },
   'edit.reverse': { tool: 'set_clip', note: 'reverse:true' },
   'edit.speakerLayout': { tool: 'speaker_layout' },

@@ -3,10 +3,12 @@ import { appendFileSync, readFileSync, statSync } from 'node:fs';
 import {
   ClaudeClient, ClaudeError, PrivacyError, ReplayTransport, sdkTransport, isModelId, DEFAULT_MODEL, MODELS,
   labelStructure, draftScript, writeHooks, checkVoice, releaseCopy, runDirector,
+  buildAssistantRequest, assertTextOnly, costOf, type AssistantMessage, type ToolSpec, type StepResult,
   type Transport, type CallRecord, type VoiceInput, type ClaudeResponse,
 } from '@director/ai';
 import type { Pacing } from '@director/analysis';
 import { ProjectSchema, type Project } from '@director/engine';
+import { manifest } from '@director/agent';
 import { getSecret, setSecret, hasSecret, getSetting, setSetting } from '../settings';
 import { library, libraryChangedEvent, type RefAnalysis } from '../library/handlers';
 
@@ -76,7 +78,34 @@ function referenceFor(brandId: string, refId: string) {
   return { ref, analysis: a, words: t?.words ?? [] };
 }
 
+/** In-flight assistant steps, so Stop cancels the request itself. */
+const assistantSteps = new Map<string, AbortController>();
+let assistantTools: ToolSpec[] | null = null;
+
+/** One model step of the in-app assistant: the renderer runs the tools, the key and the request stay here. */
+async function assistantStep(messages: AssistantMessage[], requestId: string): Promise<StepResult> {
+  assistantTools ??= manifest('anthropic') as ToolSpec[];
+  const model = currentModel();
+  const req = buildAssistantRequest({ model, tools: assistantTools, messages });
+  assertTextOnly(req, { agent: true });
+  const ac = new AbortController();
+  assistantSteps.set(requestId, ac);
+  const t0 = Date.now();
+  try {
+    const res = await transport().send(req, { task: 'assistant', signal: ac.signal, onText: (delta) => broadcast('assistant:text', { requestId, delta }) });
+    const used = res.model || model;
+    const costUsd = costOf(used, res.usage);
+    library().usage.record({ task: 'assistant', model: used, input: res.usage.input_tokens, output: res.usage.output_tokens, cacheRead: res.usage.cache_read_input_tokens ?? 0, cacheWrite: res.usage.cache_creation_input_tokens ?? 0, costUsd, brandId: null, at: new Date(t0).toISOString() });
+    broadcast('claude:usage', { task: 'assistant', costUsd });
+    return { content: res.content as StepResult['content'], stop_reason: res.stop_reason, stop_details: res.stop_details ?? null, usage: res.usage, costUsd };
+  } finally {
+    assistantSteps.delete(requestId);
+  }
+}
+
 export const claudeHandlers = {
+  'assistant:step': ({ messages, requestId }: { messages: AssistantMessage[]; requestId: string }) => guard(() => assistantStep(messages, requestId)),
+  'assistant:cancel': ({ requestId }: { requestId: string }) => { assistantSteps.get(requestId)?.abort(); return true; },
   'claude:status': () => ({
     hasKey: hasSecret('claude.apiKey') || (process.env.DIRECTOR_TEST === '1' && !!process.env.DIRECTOR_CLAUDE_REPLAY),
     model: currentModel(),

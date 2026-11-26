@@ -34,6 +34,7 @@ Electron, React and TypeScript for the app; WebCodecs and WebGL2 for one engine 
 | Library | SQLite (better-sqlite3) | Brands, reference reels, scripts, hooks, takes. |
 | AI | `@anthropic-ai/sdk` in the main process, key in the macOS Keychain (Electron safeStorage) | Script drafting and the Director edit pass, text only. |
 | Agent control | MCP server and REST on 127.0.0.1 behind a token | Lets Claude Code, Claude Desktop or any MCP client drive every edit. See [AGENTS.md](AGENTS.md). |
+| In-app assistant | A Claude tool-use loop in the renderer, one model step per IPC call to the main process | The same tool catalog from a chat panel; the key and the request stay in the main process, and the privacy guard checks every step. |
 | Tests | Vitest for packages, Playwright for the Electron app, golden frames and ffprobe checks | Checks in `scripts/verify/checks` print a PASS marker only after every assertion holds. |
 
 Alternatives considered:

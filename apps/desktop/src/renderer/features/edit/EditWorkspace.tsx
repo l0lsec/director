@@ -18,6 +18,7 @@ import './audio/AudioPanel';
 import './advanced/VideoTools';
 import './text/TextPanel';
 import './director/DirectorPanel';
+import '../assistant/AssistantPanel';
 import '../agent/AgentPanel';
 import { makeReel } from './makereel/makeReel';
 

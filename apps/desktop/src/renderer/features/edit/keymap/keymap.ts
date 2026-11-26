@@ -11,7 +11,7 @@ export const PRESETS: Record<PresetName, Record<string, string>> = {
     'A': 'edit.toolSelect', 'B': 'edit.toolBlade', 'Y': 'edit.toolSlip', 'N': 'edit.toolRoll', 'S': 'edit.snap', 'Cmd+R': 'edit.ripple',
     'Cmd+=': 'edit.zoomIn', 'Cmd+-': 'edit.zoomOut', 'Shift+Z': 'edit.zoomFit', 'Up': 'edit.prevEdit', 'Down': 'edit.nextEdit',
     'Left': 'edit.frameBack', 'Right': 'edit.frameForward', 'Home': 'edit.start', 'End': 'edit.end', 'J': 'edit.shuttleBack', 'K': 'edit.shuttleStop', 'L': 'edit.shuttleForward',
-    'I': 'edit.inPoint', 'O': 'edit.outPoint', 'Cmd+Shift+X': 'edit.deleteInOut', 'Cmd+L': 'edit.loop', 'Cmd+S': 'edit.save', 'Shift+F': 'edit.freeze', 'Shift+R': 'edit.reverse', 'Cmd+Shift+M': 'edit.makeReel', 'Cmd+Shift+E': 'edit.director',
+    'I': 'edit.inPoint', 'O': 'edit.outPoint', 'Cmd+Shift+X': 'edit.deleteInOut', 'Cmd+L': 'edit.loop', 'Cmd+S': 'edit.save', 'Shift+F': 'edit.freeze', 'Shift+R': 'edit.reverse', 'Cmd+Shift+M': 'edit.makeReel', 'Cmd+Shift+E': 'edit.director', 'Cmd+J': 'assistant.open',
   },
   premiere: {
     'Space': 'edit.play', 'Cmd+K': 'edit.split', 'Shift+Delete': 'edit.delete', 'Delete': 'edit.lift', 'Backspace': 'edit.lift',
@@ -20,7 +20,7 @@ export const PRESETS: Record<PresetName, Record<string, string>> = {
     'V': 'edit.toolSelect', 'C': 'edit.toolBlade', 'Y': 'edit.toolSlip', 'N': 'edit.toolRoll', 'S': 'edit.snap', 'Cmd+R': 'edit.ripple',
     '=': 'edit.zoomIn', '-': 'edit.zoomOut', '\\': 'edit.zoomFit', 'Up': 'edit.prevEdit', 'Down': 'edit.nextEdit',
     'Left': 'edit.frameBack', 'Right': 'edit.frameForward', 'Home': 'edit.start', 'End': 'edit.end', 'J': 'edit.shuttleBack', 'K': 'edit.shuttleStop', 'L': 'edit.shuttleForward',
-    'I': 'edit.inPoint', 'O': 'edit.outPoint', 'Cmd+Shift+X': 'edit.deleteInOut', 'Cmd+L': 'edit.loop', 'Cmd+S': 'edit.save', 'Shift+F': 'edit.freeze', 'Shift+R': 'edit.reverse', 'Cmd+Shift+M': 'edit.makeReel', 'Cmd+Shift+E': 'edit.director',
+    'I': 'edit.inPoint', 'O': 'edit.outPoint', 'Cmd+Shift+X': 'edit.deleteInOut', 'Cmd+L': 'edit.loop', 'Cmd+S': 'edit.save', 'Shift+F': 'edit.freeze', 'Shift+R': 'edit.reverse', 'Cmd+Shift+M': 'edit.makeReel', 'Cmd+Shift+E': 'edit.director', 'Cmd+J': 'assistant.open',
   },
 };
 
